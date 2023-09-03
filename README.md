@@ -1,10 +1,10 @@
-# @funboxteam/markdown-lint
+# @343dev/markdown-lint
 
 <img align="right" width="192" height="159"
-  alt="Avatar: Shiny Markdown logo with a sparkle"
-  src="./logo.png">
+alt="Avatar: Shiny Markdown logo with a sparkle"
+src="./logo.png">
 
-[![npm](https://img.shields.io/npm/v/@funboxteam/markdown-lint.svg)](https://www.npmjs.com/package/@funboxteam/markdown-lint)
+[![npm](https://img.shields.io/npm/v/@343dev/markdown-lint.svg)](https://www.npmjs.com/package/@343dev/markdown-lint)
 
 Markdown code style linter that makes your documentation looks nicer.
 
@@ -18,7 +18,7 @@ It’s based on [Prettier](https://github.com/prettier/prettier),
 
 Some projects have a lot of documentation inside the repos. Once we decided to
 start linting their grammar and check for spelling errors. For that purpose we
-built [languagetool-node](https://github.com/funbox/languagetool-node).
+built [languagetool-node](https://github.com/343dev/languagetool-node).
 
 But at the same time we decided to lint the Markdown syntax of those files, as
 we do with our JS, CSS, etc files. And we’ve created this linter.
@@ -28,13 +28,13 @@ we do with our JS, CSS, etc files. And we’ve created this linter.
 To install the tool and use it globally run:
 
 ```bash
-npm install -g @funboxteam/markdown-lint
+npm install -g @343dev/markdown-lint
 ```
 
 To install the tool into the project and setup pre-commit hook run:
 
 ```bash
-npm install --dev husky lint-staged @funboxteam/markdown-lint
+npm install --dev husky lint-staged @343dev/markdown-lint
 ```
 
 ## Project Setup
@@ -209,5 +209,3 @@ problems which may result by upgrading your kernel.
 
 Shiny picture for the project was made by
 [Igor Garybaldi](https://pandabanda.com/).
-
-[![Sponsored by FunBox](https://funbox.ru/badges/sponsored_by_funbox_centered.svg)](https://funbox.ru)
