@@ -1,10 +1,10 @@
-# @funboxteam/markdown-lint
+# @343dev/markdown-lint
 
 <img align="right" width="192" height="159"
-     alt="Аватар: Яркое градиентное лого Markdown со звёздочкой"
-     src="./logo.png">
+  alt="Аватар: Яркое градиентное лого Markdown со звёздочкой"
+  src="./logo.png">
 
-[![npm](https://img.shields.io/npm/v/@funboxteam/markdown-lint.svg)](https://www.npmjs.com/package/@funboxteam/markdown-lint)
+[![npm](https://img.shields.io/npm/v/@343dev/markdown-lint.svg)](https://www.npmjs.com/package/@343dev/markdown-lint)
 
 Консольная утилита для проверки Markdown-файлов на соответствие указанным
 стандартам качества.
@@ -18,7 +18,7 @@
 Порой репозитории с проектами содержат большое количество файлов с
 документацией. Однажды мы решили начать проверять грамматику и орфографию в
 таких файлах, и создали для этих целей
-[languagetool-node](https://github.com/funbox/languagetool-node).
+[languagetool-node](https://github.com/343dev/languagetool-node).
 
 В то же время мы решили проверять синтаксис Markdown-файлов, как мы проверяем
 JS, CSS и иные файлы проекта. Потому создали этот линтер.
@@ -28,13 +28,13 @@ JS, CSS и иные файлы проекта. Потому создали эт
 Для глобальной установки и использования CLI-утилиты:
 
 ```bash
-npm install -g @funboxteam/markdown-lint
+npm install -g @343dev/markdown-lint
 ```
 
 Для установки и настройки на pre-commit хук:
 
 ```bash
-npm install --dev husky lint-staged @funboxteam/markdown-lint
+npm install --dev husky lint-staged @343dev/markdown-lint
 ```
 
 ## Настройка проекта
@@ -210,5 +210,3 @@ problems which may result by upgrading your kernel.
 
 Яркую картинку для репозитория нарисовал
 [Игорь Гарибальди](https://pandabanda.com/).
-
-[![Sponsored by FunBox](https://funbox.ru/badges/sponsored_by_funbox_centered.svg)](https://funbox.ru)
