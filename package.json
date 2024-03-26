@@ -59,5 +59,27 @@
     "*.md": [
       "./cli.js --fix --typograph"
     ]
-  }
+  },
+	"eslintConfig": {
+		"env": {
+			"node": true
+		},
+		"extends": [
+			"xo",
+			"plugin:unicorn/recommended"
+		],
+		"plugins": [
+			"import"
+		],
+		"rules": {
+			"unicorn/prefer-module": "off",
+			"unicorn/no-array-reduce": "off",
+			"capitalized-comments": "off",
+			"no-warning-comments": "off",
+			"object-curly-spacing": [
+				"error",
+				"always"
+			]
+		}
+	}
 }
