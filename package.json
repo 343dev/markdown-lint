@@ -32,6 +32,7 @@
     "eslint": "^8.57.0",
     "eslint-config-xo": "^0.44.0",
     "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-unicorn": "^51.0.1",
     "husky": "4.3.8",
     "lint-staged": "10.5.2"
   },
