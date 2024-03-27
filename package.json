@@ -33,7 +33,6 @@
     "eslint-config-xo": "^0.44.0",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-unicorn": "^51.0.1",
-    "husky": "4.3.8",
     "lint-staged": "10.5.2"
   },
   "dependencies": {
@@ -47,11 +46,6 @@
     "typograf": "6.11.3",
     "vfile-reporter": "6.0.1"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "lint-staged": {
     "*.js": [
       "eslint --fix"
@@ -60,26 +54,26 @@
       "./cli.js --fix --typograph"
     ]
   },
-	"eslintConfig": {
-		"env": {
-			"node": true
-		},
-		"extends": [
-			"xo",
-			"plugin:unicorn/recommended"
-		],
-		"plugins": [
-			"import"
-		],
-		"rules": {
-			"unicorn/prefer-module": "off",
-			"unicorn/no-array-reduce": "off",
-			"capitalized-comments": "off",
-			"no-warning-comments": "off",
-			"object-curly-spacing": [
-				"error",
-				"always"
-			]
-		}
-	}
+  "eslintConfig": {
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "xo",
+      "plugin:unicorn/recommended"
+    ],
+    "plugins": [
+      "import"
+    ],
+    "rules": {
+      "unicorn/prefer-module": "off",
+      "unicorn/no-array-reduce": "off",
+      "capitalized-comments": "off",
+      "no-warning-comments": "off",
+      "object-curly-spacing": [
+        "error",
+        "always"
+      ]
+    }
+  }
 }
