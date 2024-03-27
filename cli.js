@@ -23,12 +23,14 @@ program
 if (program.args.length === 0) {
 	program.help();
 } else {
+	const options = program.opts();
+
 	markdownLint({
 		paths: program.args,
-		fix: program.fix,
-		ext: program.ext,
-		recursive: program.recursive,
-		config: program.config,
-		typograph: program.typograph,
+		fix: options.fix,
+		ext: options.ext,
+		recursive: options.recursive,
+		config: options.config,
+		typograph: options.typograph,
 	});
 }
