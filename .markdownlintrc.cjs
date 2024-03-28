@@ -18,8 +18,6 @@ module.exports = {
 
     stringifySettings: {
       bullet: '-',
-      listItemIndent: 'one',
-      fences: true,
     }
   },
   typograf: {
