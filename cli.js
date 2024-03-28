@@ -1,11 +1,16 @@
 #!/usr/bin/env node
 
-const { program } = require('commander');
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-const markdownLint = require('.');
-const { prepareExtensions } = require('./lib/utils');
+import { program } from 'commander';
 
-const { version, description } = require('./package.json');
+import markdownLint from './index.js';
+import { prepareExtensions } from './lib/utils.js';
+
+const dirname = path.dirname(fileURLToPath(import.meta.url));
+const { version, description } = JSON.parse(await fs.readFile(path.join(dirname, 'package.json')));
 
 program
 	.option('--fix', 'Automatically fix problems')

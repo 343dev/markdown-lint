@@ -104,7 +104,7 @@ markdown-lint --fix README.md
 `--config` указать путь до него:
 
 ```bash
-markdown-lint --fix --config ~/.markdownlintrc.js README.md
+markdown-lint --fix --config ~/.markdownlintrc.cjs README.md
 ```
 
 Пример конфигурации:

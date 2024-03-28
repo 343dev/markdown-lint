@@ -1,12 +1,11 @@
-const { fdir: Fdir } = require('fdir');
+import fs from 'node:fs';
+import path from 'node:path';
+import { pathToFileURL } from 'node:url';
 
-const fs = require('node:fs');
-const path = require('node:path');
+import { fdir as Fdir } from 'fdir';
 
-const fixFile = require('./lib/fix');
-const lintFile = require('./lib/lint');
-
-const appConfig = require('./.markdownlintrc');
+import fixFile from './lib/fix.js';
+import lintFile from './lib/lint.js';
 
 function isFileExtnameAllowed(filePath, extensions) {
 	const extname = path.extname(filePath)
@@ -16,7 +15,7 @@ function isFileExtnameAllowed(filePath, extensions) {
 	return extname && extensions.includes(extname);
 }
 
-function markdownLint({ paths = [], fix, ext, recursive, config, typograph }) {
+async function markdownLint({ paths = [], fix, ext, recursive, config, typograph }) {
 	const extensions = ext.join('|');
 
 	const directoryFilesCrawler = new Fdir()
@@ -47,7 +46,18 @@ function markdownLint({ paths = [], fix, ext, recursive, config, typograph }) {
 		}, []),
 	)];
 
-	const externalConfig = config && require(path.resolve(config));
+	const defaultConfigFilePath = path.join(path.dirname(import.meta.url), '.markdownlintrc.cjs');
+	const defaultConfigData = await import(defaultConfigFilePath);
+	const appConfig = defaultConfigData.default;
+
+	let externalConfig;
+
+	if (config && fs.existsSync(config)) {
+		const externalConfigFilepath = pathToFileURL(path.resolve(config));
+		const externalConfigData = await import(externalConfigFilepath);
+
+		externalConfig = externalConfigData.default;
+	}
 
 	for (const filePath of filePaths) {
 		let fileContent = fs.readFileSync(filePath, 'utf8');
@@ -70,4 +80,4 @@ function markdownLint({ paths = [], fix, ext, recursive, config, typograph }) {
 	}
 }
 
-module.exports = markdownLint;
+export default markdownLint;

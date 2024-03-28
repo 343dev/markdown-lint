@@ -103,7 +103,7 @@ You may use your own configuration file by passing the path to that file using
 `--config` option:
 
 ```bash
-markdown-lint --fix --config ~/.markdownlintrc.js README.md
+markdown-lint --fix --config ~/.markdownlintrc.cjs README.md
 ```
 
 Example of configuration file:
