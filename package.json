@@ -71,7 +71,6 @@
       "import"
     ],
     "rules": {
-      "unicorn/prefer-module": "off",
       "unicorn/no-array-reduce": "off",
       "capitalized-comments": "off",
       "no-warning-comments": "off",
