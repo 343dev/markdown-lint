@@ -1,8 +1,8 @@
 # @343dev/markdown-lint
 
 <img align="right" width="192" height="159"
-  alt="Аватар: Яркое градиентное лого Markdown со звёздочкой"
-  src="./logo.png">
+alt="Аватар: Яркое градиентное лого Markdown со звёздочкой"
+src="./logo.png">
 
 [![npm](https://img.shields.io/npm/v/@343dev/markdown-lint.svg)](https://www.npmjs.com/package/@343dev/markdown-lint)
 
@@ -31,32 +31,10 @@ JS, CSS и иные файлы проекта. Потому создали эт
 npm install -g @343dev/markdown-lint
 ```
 
-Для установки и настройки на pre-commit хук:
+Для установки в проект:
 
 ```bash
-npm install --dev husky lint-staged @343dev/markdown-lint
-```
-
-## Настройка проекта
-
-Для автоматической проверки файлов перед коммитом необходимо настроить `husky` и
-`lint-staged` на работу с `markdown-lint` в `package.json` вашего проекта.
-
-Пример конфигурации:
-
-```json
-{
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.md": [
-      "markdown-lint --fix --typograph"
-    ]
-  }
-}
+npm install --dev @343dev/markdown-lint
 ```
 
 ## Работа с CLI
@@ -121,13 +99,13 @@ module.exports = {
     // применяем настройки для remark-lint
     plugins: [
       // объявляем линтеру, что максимальная длина строки теперь равна 120 символам
-      [require('remark-lint-maximum-line-length'), 120],
+      ['remark-lint-maximum-line-length', 120],
 
       // отключаем правило `no-inline-padding`
-      [require('remark-lint-no-inline-padding'), false],
+      ['remark-lint-no-inline-padding', false],
 
       // объявляем линтеру, что мы теперь используем `*` как маркер списка
-      [require('remark-lint-unordered-list-marker-style'), '*']
+      ['remark-lint-unordered-list-marker-style', '*']
     ],
 
     // remark-stringify обрабатывает тексты, когда `--fix` передан
