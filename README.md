@@ -31,32 +31,10 @@ To install the tool and use it globally run:
 npm install -g @343dev/markdown-lint
 ```
 
-To install the tool into the project and setup pre-commit hook run:
+To install the tool into the project:
 
 ```bash
-npm install --dev husky lint-staged @343dev/markdown-lint
-```
-
-## Project Setup
-
-To automatically lint Markdown files on precommit you should setup `husky` and
-`lint-staged` to work with `markdown-lint` in your project’s package.json.
-
-Example:
-
-```json
-{
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.md": [
-      "markdown-lint --fix --typograph"
-    ]
-  }
-}
+npm install --dev @343dev/markdown-lint
 ```
 
 ## CLI Usage
@@ -103,7 +81,7 @@ You may use your own configuration file by passing the path to that file using
 `--config` option:
 
 ```bash
-markdown-lint --fix --config ~/.markdownlintrc.js README.md
+markdown-lint --fix --config ~/.markdownlintrc.cjs README.md
 ```
 
 Example of configuration file:
@@ -120,13 +98,13 @@ module.exports = {
     // plugins for remark-lint
     plugins: [
       // print errors when there're lines longer that 120 characters
-      [require('remark-lint-maximum-line-length'), 120],
+      ['remark-lint-maximum-line-length', 120],
 
       // disable rule `no-inline-padding`
-      [require('remark-lint-no-inline-padding'), false],
+      ['remark-lint-no-inline-padding', false],
 
       // set `*` as the only allowed marker for unordered list
-      [require('remark-lint-unordered-list-marker-style'), '*']
+      ['remark-lint-unordered-list-marker-style', '*']
     ],
 
     // settings for remark-stringify which is used when `--fix` is passed
@@ -138,7 +116,7 @@ module.exports = {
 
   typograf: {
     // rules API — https://github.com/typograf/typograf/blob/dev/docs/api_rules.md
-    // list of ruls — https://github.com/typograf/typograf/blob/dev/docs/RULES.en-US.md
+    // list of rules — https://github.com/typograf/typograf/blob/dev/docs/RULES.en-US.md
     locale: ['ru', 'en-US'],
     enableRules: [],
     disableRules: [

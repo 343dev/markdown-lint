@@ -1,5 +1,14 @@
 # Changelog
 
+## 3.0.0 (28.03.2024)
+
+⚠️ Breaking changes.
+
+- Package now
+  is [ESM](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c) only.
+- Node.js version now is ≥16.
+- Config file updated.
+
 ## 2.0.1 (10.06.2021)
 
 Fixed several security vulnerabilities:

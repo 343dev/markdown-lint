@@ -1,44 +1,83 @@
-const fs = require('node:fs');
-const path = require('node:path');
+import fs from 'node:fs';
+import path from 'node:path';
+import { pathToFileURL } from 'node:url';
 
-const fixFile = require('./lib/fix');
-const lintFile = require('./lib/lint');
-const { getFilesByPath } = require('./lib/utils');
+import { fdir as Fdir } from 'fdir';
 
-const appConfig = require('./.markdownlintrc');
+import fixFile from './lib/fix.js';
+import lintFile from './lib/lint.js';
 
-function markdownLint({ paths = [], fix, ext, recursive, config, typograph }) {
-  const dirs = paths.filter(p => fs.existsSync(p) && fs.statSync(p).isDirectory());
-  const extensions = ext.join('|');
-  const extensionsRegExp = new RegExp(`.+\\.(${extensions})$`, 'i');
+function isFileExtnameAllowed(filePath, extensions) {
+	const extname = path.extname(filePath)
+		.toLocaleLowerCase()
+		.slice(1);
 
-  const files = paths
-    .filter(p => extensionsRegExp.test(p) && fs.existsSync(p) && fs.statSync(p).isFile())
-    .concat(...(dirs.map(d => getFilesByPath(d, extensions, recursive))));
-
-  // eslint-disable-next-line import/no-dynamic-require
-  const externalConfig = config && require(path.resolve(config));
-
-  // eslint-disable-next-line no-restricted-syntax
-  for (const filePath of files) {
-    let fileContent = fs.readFileSync(filePath, 'utf8');
-
-    if (fix) {
-      fileContent = fixFile(fileContent, {
-        appConfig,
-        externalConfig,
-        typograph,
-      });
-
-      fs.writeFileSync(filePath, fileContent);
-    }
-
-    lintFile(fileContent, {
-      appConfig,
-      externalConfig,
-      filePath,
-    });
-  }
+	return extname && extensions.includes(extname);
 }
 
-module.exports = markdownLint;
+async function markdownLint({ paths = [], fix, ext, recursive, config, typograph }) {
+	const extensions = ext.join('|');
+
+	const directoryFilesCrawler = new Fdir()
+		.filter(filePath => isFileExtnameAllowed(filePath, extensions))
+		.withMaxDepth(recursive ? undefined : 0)
+		.withBasePath();
+
+	const filePaths = [...new Set(
+		paths.reduce((accumulator, filePath) => {
+			if (fs.existsSync(filePath)) {
+				const isDirectory = fs.statSync(filePath).isDirectory();
+
+				// search for files recursively inside the directory
+				if (isDirectory) {
+					accumulator = [
+						...accumulator,
+						...directoryFilesCrawler.crawl(filePath).sync(),
+					];
+				}
+
+				// filter files by extension
+				if (!isDirectory && isFileExtnameAllowed(filePath, extensions)) {
+					accumulator.push(filePath);
+				}
+			}
+
+			return accumulator;
+		}, []),
+	)];
+
+	const defaultConfigFilePath = path.join(path.dirname(import.meta.url), '.markdownlintrc.cjs');
+	const defaultConfigData = await import(defaultConfigFilePath);
+	const appConfig = defaultConfigData.default;
+
+	let externalConfig;
+
+	if (config && fs.existsSync(config)) {
+		const externalConfigFilepath = pathToFileURL(path.resolve(config));
+		const externalConfigData = await import(externalConfigFilepath);
+
+		externalConfig = externalConfigData.default;
+	}
+
+	for (const filePath of filePaths) {
+		let fileContent = fs.readFileSync(filePath, 'utf8');
+
+		if (fix) {
+			fileContent = await fixFile(fileContent, { // eslint-disable-line no-await-in-loop
+				appConfig,
+				externalConfig,
+				typograph,
+			});
+
+			fs.writeFileSync(filePath, fileContent);
+		}
+
+		lintFile(fileContent, {
+			appConfig,
+			externalConfig,
+			filePath,
+		});
+	}
+}
+
+export default markdownLint;

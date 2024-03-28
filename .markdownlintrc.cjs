@@ -9,17 +9,15 @@ module.exports = {
   },
   remark: {
     plugins: [
-      require('remark-preset-lint-markdown-style-guide'),
-      [require('remark-lint-list-item-indent'), 'space'],
-      [require('remark-lint-list-item-spacing'), { checkBlanks: true }],
-      [require('remark-lint-ordered-list-marker-value'), 'ordered'],
-      [require('remark-lint-emphasis-marker'), 'consistent'],
+    	'remark-preset-lint-markdown-style-guide',
+      ['remark-lint-list-item-indent', 'space'],
+      ['remark-lint-list-item-spacing', { checkBlanks: true }],
+      ['remark-lint-ordered-list-marker-value', 'ordered'],
+      ['remark-lint-emphasis-marker', 'consistent'],
     ],
 
     stringifySettings: {
       bullet: '-',
-      listItemIndent: 'one',
-      fences: true,
     }
   },
   typograf: {
