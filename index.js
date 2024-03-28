@@ -63,7 +63,7 @@ async function markdownLint({ paths = [], fix, ext, recursive, config, typograph
 		let fileContent = fs.readFileSync(filePath, 'utf8');
 
 		if (fix) {
-			fileContent = fixFile(fileContent, {
+			fileContent = await fixFile(fileContent, { // eslint-disable-line no-await-in-loop
 				appConfig,
 				externalConfig,
 				typograph,
