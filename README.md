@@ -12,8 +12,6 @@ It’s based on [Prettier](https://github.com/prettier/prettier),
 [Remark](https://github.com/remarkjs/remark) &
 [Typograf](https://github.com/typograf/typograf).
 
-[По-русски](./README.ru.md)
-
 ## Rationale
 
 Some projects have a lot of documentation inside the repos. Once we decided to
