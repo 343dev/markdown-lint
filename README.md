@@ -4,6 +4,7 @@
 alt="Avatar: Shiny Markdown logo with a sparkle"
 src="./logo.png">
 
+[![NPM Downloads](https://img.shields.io/npm/dw/%40343dev%2Fmarkdown-lint)](https://www.npmjs.com/package/@343dev/markdown-lint)
 [![npm](https://img.shields.io/npm/v/@343dev/markdown-lint.svg)](https://www.npmjs.com/package/@343dev/markdown-lint)
 
 Markdown code style linter that makes your documentation looks nicer.
