@@ -185,3 +185,10 @@ problems which may result by upgrading your kernel.
 
 Shiny picture for the project was made by
 [Igor Garybaldi](https://pandabanda.com/).
+
+## Other projects
+
+- 🖼 [optimizt](https://github.com/343dev/optimizt) — CLI tool for image optimization: compresses PNG, JPEG, GIF, SVG, and creates AVIF/WebP
+- 📦 [harold](https://github.com/343dev/harold) — CLI tool that compares frontend project bundle sizes between snapshots
+- 🐳 [jailbot](https://github.com/343dev/jailbot) — Docker container wrapper with automatic filesystem path mounting
+- 🔤 [languagetool-node](https://github.com/343dev/languagetool-node) — CLI spell and grammar checker powered by LanguageTool
